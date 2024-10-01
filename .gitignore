@@ -1,0 +1,11 @@
+# front-end
+/csv-frontend-repo/node_modules
+/csv-frontend-repo/build
+
+# back-end
+/csv-backend-repo/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*

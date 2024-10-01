@@ -1,0 +1,7 @@
+import { Router } from 'express';
+import { searchPaginationHandler } from '../handlers/search-pagination-handler';
+
+const router = Router();
+router.post('search', searchPaginationHandler);
+
+export default router;
