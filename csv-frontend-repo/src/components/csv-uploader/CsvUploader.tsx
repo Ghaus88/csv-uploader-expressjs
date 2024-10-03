@@ -12,9 +12,7 @@ const CsvUploader = ({
   setSelectedFile: (file: File | null) => void;
 }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('Inside here 1', e.target);
     if (e.target.files) {
-      console.log('Inside here 2');
       setSelectedFile(e.target.files[0]);
     }
   };
@@ -31,12 +29,17 @@ const CsvUploader = ({
   return (
     <div className="csv-uploader">
       <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} className="file-input" />
-        <button type="submit" className="upload-btn">
+        <input
+          data-testid="file-input"
+          type="file"
+          onChange={handleFileChange}
+          className="file-input"
+        />
+        <button data-testid="upload-btn" type="submit" className="upload-btn">
           Upload CSV
         </button>
       </form>
-      <ProgressBar progress={uploadProgress} />
+      <ProgressBar testId="progress-bar" progress={uploadProgress} />
     </div>
   );
 };
