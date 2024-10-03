@@ -5,7 +5,6 @@ export function getDataHandler(request: Request, response: Response) {
   const limit = parseInt(request.query.limit as string) || 10;
   const start = (page - 1) * limit;
   const end = page * limit;
-  console.log('uploadedData', getUploadedData());
   const paginatedData = getUploadedData().slice(start, end);
 
   response.json({
