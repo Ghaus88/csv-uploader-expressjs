@@ -31,7 +31,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder={placeholder}
         className="search-input"
       />
-      <button type="submit" className="search-button">
+      <button
+        data-testid="search-button"
+        type="submit"
+        className="search-button"
+      >
         Search
       </button>
     </form>
