@@ -7,7 +7,11 @@ interface DataTableProps {
 
 const DataTable: React.FC<DataTableProps> = ({ data }) => {
   if (data.length === 0) {
-    return <p className="no-data">No data to display</p>;
+    return (
+      <p data-testid="no-data" className="no-data">
+        No data to display
+      </p>
+    );
   }
 
   // Extract column headers from the first row of the data

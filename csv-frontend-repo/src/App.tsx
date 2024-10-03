@@ -62,7 +62,7 @@ const App: React.FC = () => {
     }
   };
 
-  const handleSearchQuery = async (searchQuery: string) => {
+  const handleSearchQuery = async () => {
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/search?searchQuery=${searchQuery}`

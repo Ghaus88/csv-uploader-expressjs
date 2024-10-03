@@ -43,15 +43,13 @@ describe('CsvUploader Component', () => {
       />
     );
 
-    const fileInput = screen.getByTestId('file-input'); // Adjust the label text if needed
+    const fileInput = screen.getByTestId('file-input');
     const testFile = new File(['test content'], 'test.csv', {
       type: 'text/csv',
     });
 
-    // Simulate file selection
     fireEvent.change(fileInput, { target: { files: [testFile] } });
 
-    // Verify if the setSelectedFile function is called with the correct file
     expect(mockSetSelectedFile).toHaveBeenCalledWith(testFile);
   });
 
@@ -90,12 +88,11 @@ describe('CsvUploader Component', () => {
     );
 
     const uploadButton = screen.getByTestId('upload-btn');
-    // Mock window.alert to avoid actual alert during tests
+
     jest.spyOn(window, 'alert').mockImplementation(() => {});
 
     fireEvent.click(uploadButton);
 
-    // Check if alert was called
     expect(window.alert).toHaveBeenCalledWith('Please select a file');
   });
 });
