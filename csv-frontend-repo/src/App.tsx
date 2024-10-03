@@ -11,6 +11,7 @@ const App: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [totalPages, setTotalPages] = useState(1);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   //Reset when refresh
   useEffect(() => {
@@ -32,8 +33,8 @@ const App: React.FC = () => {
         console.error('Error fetching data', error);
       }
     };
-    selectedFile && uploadProgress === 100 && fetchData();
-  }, [page, selectedFile, uploadProgress]);
+    selectedFile && uploadProgress === 100 && !searchQuery && fetchData();
+  }, [page, selectedFile, uploadProgress, searchQuery]);
 
   const handleFileUpload = async (file: File) => {
     console.log(process.env.REACT_APP_BASE_URL, file);
@@ -63,7 +64,6 @@ const App: React.FC = () => {
 
   const handleSearchQuery = async (searchQuery: string) => {
     try {
-      console.log('Searching for ', searchQuery);
       const res = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/search?searchQuery=${searchQuery}`
       );
@@ -83,7 +83,11 @@ const App: React.FC = () => {
         selectedFile={selectedFile}
         setSelectedFile={setSelectedFile}
       />
-      <SearchBar onSearch={handleSearchQuery} />
+      <SearchBar
+        onSearch={handleSearchQuery}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       <DataTable data={data} />
       <Pagination
         currentPage={page}

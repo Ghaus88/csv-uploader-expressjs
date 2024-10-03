@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './search-bar.css';
 interface SearchBarProps {
-  onSearch: (query: string) => void;
+  onSearch: () => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
   placeholder?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
+  searchQuery,
+  setSearchQuery,
   placeholder = 'Search...',
 }) => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
-
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(searchQuery);
+    onSearch();
   };
 
   return (
