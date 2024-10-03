@@ -12,6 +12,7 @@ const App: React.FC = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const LIMIT = 10;
 
   //Reset when refresh
   useEffect(() => {
@@ -25,7 +26,7 @@ const App: React.FC = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/data?page=${page}&limit=10`
+          `${process.env.REACT_APP_BASE_URL}/data?page=${page}&limit=${LIMIT}`
         );
         setData(res.data.data);
         setTotalPages(res.data.totalPages);
